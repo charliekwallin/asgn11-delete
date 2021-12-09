@@ -29,6 +29,21 @@ function insert_salamander($name, $habitat, $description) {
     }
 }
 
+function delete_salamander($id) {
+  global $db;
+  $sql = "DELETE FROM salamander ";
+  $sql .= "WHERE id='" . $id . "' ";
+  $sql .= "LIMIT 1";
+
+  $result = mysqli_query($db, $sql);
+  if ($result) {
+    return true;
+  } else {
+    echo mysqli_error($db);
+    db_disconnect($db);
+    exit();
+  }
+}
 function update_subject($salamander) {
     global $db;
   $sql = "UPDATE salamander SET ";
